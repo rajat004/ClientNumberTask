@@ -15,7 +15,6 @@ import core.ClientNumber;
 import io.dropwizard.hibernate.AbstractDAO;
 import static java.util.Objects.requireNonNull;
 
-
 @SuppressWarnings("unused")
 public class ClientNumberDao extends AbstractDAO<ClientNumber> {
 
@@ -78,15 +77,14 @@ public class ClientNumberDao extends AbstractDAO<ClientNumber> {
 		org.hibernate.Transaction tx = session.beginTransaction();
 		int count = 0;
 		List<Long> ids = requireNonNull(q).list();
-		
-		//creating InactiveClientNumbers in batches of 
-		//20 each time if any Inactive Number is 
-		//unavailable in the system
-		
-		
+
+		// creating InactiveClientNumbers in batches of
+		// 20 each time if any Inactive Number is
+		// unavailable in the system
+
 		for (Long id : ids) {
 			ClientNumber clientNumber = new ClientNumber(id);
-			if (id < ClientNumberConstants.MAX_DEFINED_NUMBER) {
+			if (id <= ClientNumberConstants.MAX_DEFINED_NUMBER) {
 				session.save(clientNumber);
 			}
 			if (count % 20 == 0) {
@@ -97,7 +95,7 @@ public class ClientNumberDao extends AbstractDAO<ClientNumber> {
 		}
 
 		tx.commit();
-		//session.close();
+		// session.close();
 	}
 
 }

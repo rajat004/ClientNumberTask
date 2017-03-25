@@ -10,19 +10,15 @@ import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import resource.ClientNumberResource;
 
-
-
 public class ClientNumberApplication extends Application<ClientNumberConfiguration> {
 
 	public static void main(String[] args) throws Exception {
 		new ClientNumberApplication().run(args);
 	}
 
-	@Override
-	public String getName() {
-		return "hello-world";
-	}
-
+	/*
+	 * @Override public String getName() { return "hello-world"; }
+	 */
 	private final HibernateBundle<ClientNumberConfiguration> hibernateBundle = new HibernateBundle<ClientNumberConfiguration>(
 			ClientNumber.class) {
 		@Override

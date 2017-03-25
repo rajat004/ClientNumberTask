@@ -12,9 +12,6 @@ import db.ClientNumberDao;
 import io.dropwizard.hibernate.UnitOfWork;
 import io.dropwizard.jersey.params.LongParam;
 
-
-
-
 @Path("/number")
 @Produces(value = "application/json")
 public class ClientNumberResource {
